@@ -69,8 +69,9 @@ test_week3: ci
 	cat valgrind_log | grep "leaks"
 	rm valgrind_log
 
-debug: ${OBJS} ${HDRS}
-	${CC} ${CC_FLAGS} -o ci -DDEBUG ${OBJS}
+debug: clean ${OBJS} ${HDRS}
+	${CC} ${CC_OPTIONS} ${CC_FLAGS} -o ci.o -DDEBUG ci.c
+	${CC} ${CC_FLAGS} -o ci ${OBJS}
 	gdb ci
 
 clean:
